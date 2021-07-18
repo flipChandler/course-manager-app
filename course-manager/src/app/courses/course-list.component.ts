@@ -2,9 +2,8 @@ import { Course } from 'src/app/courses/course';
 import { CourseService } from './course.service';
 import { Component, OnInit } from "@angular/core";
 
-
+// quando um componente está na rota, não faz sentido ele ter uma tag
 @Component({
-  selector: 'app-course-list',
   templateUrl: './course-list.component.html'
 })
 export class CourseListComponent implements OnInit {
