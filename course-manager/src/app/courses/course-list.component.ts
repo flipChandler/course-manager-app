@@ -1,5 +1,7 @@
+import { Course } from 'src/app/courses/course';
+import { CourseService } from './course.service';
 import { Component, OnInit } from "@angular/core";
-import { Course } from "src/app/courses/course";
+
 
 @Component({
   selector: 'app-course-list',
@@ -7,50 +9,37 @@ import { Course } from "src/app/courses/course";
 })
 export class CourseListComponent implements OnInit {
 
-  courses: Course[] = [];
+  // variavel com underscore indica que ela só valerá dentro desse componente
+  _courses: Course[] = [];
+
+  _filterBy: string;
+
+  _filteredCourses: Course[] = [];
+
+  // dependência de CourseService sendo injetada em CourseListComponent pelo Angular
+  constructor(private service: CourseService) {
+
+  }
 
   ngOnInit() {
-    this.courses = [
-      {
-        id: 1,
-        name: 'Angular: forms',
-        imageUrl: '/assets/images/forms.png',
-        price: 99.99,
-        code: 'XPS-8796',
-        duration: 120,
-        rating: 4.7,
-        releaseDate: 'June, 23, 2002'
-      },
-      {
-        id: 2,
-        name: 'Angular: http',
-        imageUrl: '/assets/images/cli.png',
-        price: 59.99,
-        code: 'XPS-8797',
-        duration: 60,
-        rating: 2.9,
-        releaseDate: 'April, 1, 2021'
-      },
-      {
-        id: 3,
-        name: 'Angular: Material',
-        imageUrl: '/assets/images/http.png',
-        price: 45.9,
-        code: 'XPS-8798',
-        duration: 152,
-        rating: 4.8,
-        releaseDate: 'December, 2, 2020'
-      },
-      {
-        id: 4,
-        name: 'VueJs: forms',
-        imageUrl: '/assets/images/router.png',
-        price: 61.87,
-        code: 'XPS-8799',
-        duration: 87,
-        rating: 3.4,
-        releaseDate: 'January, 11, 2015'
-      }
-    ]
+    this._courses = this.service.retrieveAll();
+    this._filteredCourses = this._courses;
   }
+
+  set filter(value: string) {
+    this._filterBy = value;
+
+    // pega uma sequencia de substrings e bater com algum campo do curso
+    // vai retornar no array
+    this._filteredCourses = this._courses
+      .filter((course: Course) => course.name.toLowerCase()
+        .indexOf(this._filterBy.toLowerCase()) > -1
+      );
+  }
+
+  get filter() {
+    return this._filterBy;
+  }
+
+
 }
