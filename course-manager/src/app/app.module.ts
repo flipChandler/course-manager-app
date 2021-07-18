@@ -1,3 +1,4 @@
+import { ReplacePipe } from './pipe/replace.pipe';
 import { StarComponent } from './star/star.component';
 import { CourseListComponent } from './courses/course-list.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,7 +10,8 @@ import { AppComponent } from './app.component';
   declarations: [
     AppComponent,
     CourseListComponent,
-    StarComponent
+    StarComponent,
+    ReplacePipe
   ],
   imports: [
     BrowserModule,
