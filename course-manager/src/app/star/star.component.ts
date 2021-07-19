@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from "@angular/core";
+import { Component, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-star',
@@ -8,7 +8,7 @@ import { Component, Input, OnChanges } from "@angular/core";
 export class StarComponent implements OnChanges {
 
   @Input() // virou um atributo da tag app-star a ser usado no .html
-  rating: number = 0;
+  rating = 0;
 
   starWidth: number;
 

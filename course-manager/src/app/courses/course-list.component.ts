@@ -1,6 +1,6 @@
 import { Course } from 'src/app/courses/course';
 import { CourseService } from './course.service';
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 
 // quando um componente está na rota, não faz sentido ele ter uma tag
 @Component({

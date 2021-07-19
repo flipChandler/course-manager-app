@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from "@angular/core";
+import { Pipe, PipeTransform } from '@angular/core';
 
 // elegível para ser um pipe
 @Pipe({

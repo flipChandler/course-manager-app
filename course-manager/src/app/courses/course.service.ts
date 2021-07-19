@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { Course } from "./course";
+import { Injectable } from '@angular/core';
+import { Course } from './course';
 
 // NÃO POSSUIR VARIAVEIS QUE UTILIZAM EM OUTRAS CLASSES
 // TER SOMENTE VARIÁVEIS ESTÁTICAS PARA USO DA PROPRIA CLASSE DE SERVIÇOS
@@ -11,12 +11,12 @@ import { Course } from "./course";
 })
 export class CourseService {
 
-    retrieveAll():Course[] {
+    retrieveAll(): Course[] {
       return COURSES;
     }
 }
 
-var COURSES: Course[] = [
+const COURSES: Course[] = [
   {
       id: 1,
       name: 'Angular: CLI',
@@ -24,7 +24,7 @@ var COURSES: Course[] = [
       description: 'Neste curso, os alunos irão obter um grande conhecimento nos principais recursos do CLI.',
       duration: 120,
       code: 'XLF-1212',
-      rating: 3,
+      rating: 4.2,
       price: 12.99,
       imageUrl: '/assets/images/cli.png',
   },
