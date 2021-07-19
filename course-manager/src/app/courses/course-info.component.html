@@ -3,7 +3,7 @@
 <hr>
 <!-- ngClass traz uma formatação altenativa do bootstrap (is-invalid) caso a variavel de template (#courseName)
    esteja invalida -->
-<form #courseForm="ngForm">
+<form #courseForm="ngForm" *ngIf="course"> <!-- só exibe o formulário, se course tiver uma informação -->
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">
       Name:
@@ -69,7 +69,7 @@
   </div>
   <br>
 
-  <!-- save disbaled if #courseForm is invalid -->
+  <!-- save disabled if #courseForm is invalid -->
   <button (click)="save()" [disabled]="courseForm.invalid" class="btn btn-primary offset-6">Save</button>
   &nbsp;
   <button [routerLink]="['/courses']" class="btn btn-secondary">Back</button>

@@ -1,9 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Course } from './course';
-
-// NÃO POSSUIR VARIAVEIS QUE UTILIZAM EM OUTRAS CLASSES
-// TER SOMENTE VARIÁVEIS ESTÁTICAS PARA USO DA PROPRIA CLASSE DE SERVIÇOS
-// ter métodos simples em serviços
+/*
+  NÃO POSSUIR VARIAVEIS QUE UTILIZAM EM OUTRAS CLASSES
+   TER SOMENTE VARIÁVEIS ESTÁTICAS PARA USO DA PROPRIA CLASSE DE SERVIÇOS
+   ter métodos simples em serviços
+*/
 
 // elegível para injeção de dependências
 @Injectable({
@@ -11,21 +14,28 @@ import { Course } from './course';
 })
 export class CourseService {
 
-    retrieveAll(): Course[] {
-      return COURSES;
+    private baseUrl = 'http://localhost:3100/api/courses';
+
+    constructor(private httpClient: HttpClient) {
     }
 
-    retrieveById(id: number): Course {
-      return COURSES.find((courseIterator: Course) =>
-            courseIterator.id === id);
+    retrieveAll(): Observable<Course[]> {
+      return this.httpClient.get<Course[]>(this.baseUrl);
     }
 
-    save(course: Course): void {
+    retrieveById(id: number): Observable<Course> {
+      return this.httpClient.get<Course>(`${this.baseUrl}/${id}`);
+    }
+
+    /*
+     update or create
+     se tiver id, put... senao post
+     */
+    save(course: Course): Observable<Course> {
       if (course.id) {
-        const index = COURSES
-        .findIndex((courseIterator: Course) =>
-        courseIterator.id === course.id);
-        COURSES[index] = course;
+        return this.httpClient.put<Course>(`${this.baseUrl}/${course.id}`, course);
+      } else {
+        return this.httpClient.post<Course>(`${this.baseUrl}`, course);
       }
     }
 

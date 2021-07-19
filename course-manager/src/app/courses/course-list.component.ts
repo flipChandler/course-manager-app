@@ -21,8 +21,22 @@ export class CourseListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._courses = this.service.retrieveAll();
-    this._filteredCourses = this._courses;
+    this.retrieveAll();
+  }
+/*
+     NO RESPONSE DO SUBSCRIBE, RECEBE UMAS CALLBACK'S FUNCTIONS, COMO NEXT (DEU CERTO)
+     ERROR É OUTRA CALLBACK FUNCTION QUE RETORNA AO SUBSCRIBE QUANDO ALGO DE ERRADO ACONTECEU
+     this._courses recebe a lista de course que veio do next
+     this._filtered está aqui, pois, o retorno é assíncrono
+ */
+  retrieveAll(): void {
+    this.service.retrieveAll().subscribe({
+      next: courses => {
+        this._courses = courses;
+        this._filteredCourses = this._courses;
+      },
+      error: err => console.log('Error', err)
+    });
   }
 
   set filter(value: string) {
