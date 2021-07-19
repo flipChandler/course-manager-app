@@ -3,7 +3,7 @@
 <hr>
 <!-- ngClass traz uma formatação altenativa do bootstrap (is-invalid) caso a variavel de template (#courseName)
    esteja invalida -->
-<form #courseForm="ngForm" *ngIf="course"> <!-- só exibe o formulário, se course tiver uma informação -->
+<form #courseForm="ngForm" *ngIf="course"> <!-- só exibe o formulário, se course tiver uma informação (assincronia) -->
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">
       Name:
