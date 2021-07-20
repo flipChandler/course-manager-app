@@ -1,5 +1,5 @@
+import { CoreModule } from './core/core.module';
 import { Error404Component } from './error-404/error-404.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -11,7 +11,6 @@ import { CourseModule } from './courses/course.module';
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent,
     Error404Component,
   ],
   imports: [
@@ -19,6 +18,7 @@ import { CourseModule } from './courses/course.module';
     FormsModule,
     HttpClientModule,
     CourseModule,
+    CoreModule,
     RouterModule.forRoot([
       {
         path: '', redirectTo: 'courses', pathMatch: 'full' // rota raiz
